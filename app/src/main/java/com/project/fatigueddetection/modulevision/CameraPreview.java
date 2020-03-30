@@ -9,11 +9,15 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.ViewGroup;
+
 import androidx.core.app.ActivityCompat;
+
 import com.google.android.gms.common.images.Size;
 import com.google.android.gms.vision.CameraSource;
+
 import java.io.IOException;
 
+@SuppressWarnings("ALL")
 public class CameraPreview extends ViewGroup {
     private static final String TAG = "CameraSourcePreview";
 

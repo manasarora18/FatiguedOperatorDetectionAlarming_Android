@@ -3,7 +3,7 @@ package com.project.fatigueddetection.modulevision;
 import android.graphics.PointF;
 import android.os.SystemClock;
 
-public class EyeTracker {
+class EyeTracker {
     private final long TIME_MS = 1000;
     private final float FRICTION_COEFF = 2.2f;
     private final float GRAVITY_COEFF = 0.5f;
@@ -60,7 +60,7 @@ public class EyeTracker {
         return velocity;
     }
 
-   //To keep iris inside the eye, with fast movement, iris may go out of bounds
+    //To keep iris inside the eye, with fast movement, iris may go out of bounds
     private void makeIrisInBounds(float simulationRate) {
         float irisOffsetX = mIrisPosition.x - mEyePosition.x;
         float irisOffsetY = mIrisPosition.y - mEyePosition.y;
@@ -68,12 +68,12 @@ public class EyeTracker {
         float maxDistance = mEyeRadius - mIrisRadius;
         float distance = (float) Math.sqrt(Math.pow(irisOffsetX, 2) + Math.pow(irisOffsetY, 2));
         if (distance <= maxDistance) {
-           //no correction
+            //no correction
             mConsecutiveBounces = 0;
             return;
         }
 
-       //dampen the momentum of fast movement
+        //dampen the momentum of fast movement
         mConsecutiveBounces++;
         float ratio = maxDistance / distance;
         float x = mEyePosition.x + (ratio * irisOffsetX);

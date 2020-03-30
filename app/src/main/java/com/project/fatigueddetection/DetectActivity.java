@@ -3,6 +3,7 @@ package com.project.fatigueddetection;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.vision.CameraSource;
@@ -29,6 +31,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.project.fatigueddetection.modulevision.CameraPreview;
 import com.project.fatigueddetection.modulevision.FaceTracker;
 import com.project.fatigueddetection.modulevision.GraphicOverlay;
+
 import java.io.IOException;
 
 public class DetectActivity extends AppCompatActivity {
@@ -182,13 +185,13 @@ public class DetectActivity extends AppCompatActivity {
 
         Detector.Processor<Face> processor;
         if (mIsFrontFacing) {
-            Tracker<Face> tracker = new FaceTracker(mGraphicOverlay,getApplicationContext());
+            Tracker<Face> tracker = new FaceTracker(mGraphicOverlay, getApplicationContext());
             processor = new LargestFaceFocusingProcessor.Builder(detector, tracker).build();
         } else {
             MultiProcessor.Factory<Face> factory = new MultiProcessor.Factory<Face>() {
                 @Override
                 public Tracker<Face> create(Face face) {
-                    return new FaceTracker(mGraphicOverlay,context);
+                    return new FaceTracker(mGraphicOverlay, context);
                 }
             };
             processor = new MultiProcessor.Builder<>(factory).build();

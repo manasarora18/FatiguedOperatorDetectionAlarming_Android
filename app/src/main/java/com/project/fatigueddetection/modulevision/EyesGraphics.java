@@ -28,7 +28,7 @@ public class EyesGraphics extends GraphicOverlay.Graphic {
     private MediaPlayer mediaPlayer = null;
 
     //Eye
-    public EyesGraphics(GraphicOverlay overlay, Context context) {
+    EyesGraphics(GraphicOverlay overlay, Context context) {
         super(overlay);
         this.context = context;
 
@@ -71,7 +71,7 @@ public class EyesGraphics extends GraphicOverlay.Graphic {
         PointF detectLeftPosition = mLeftPosition;
         PointF detectRightPosition = mRightPosition;
         if ((detectLeftPosition == null) || (detectRightPosition == null)) {
-            if(mediaPlayer!=null){
+            if (mediaPlayer != null) {
                 mediaPlayer.stop();
             }
             return;
@@ -104,16 +104,16 @@ public class EyesGraphics extends GraphicOverlay.Graphic {
     private void drawEye(Canvas canvas, PointF eyePosition, float eyeRadius,
                          PointF irisPosition, float irisRadius, boolean isOpen) {
 
-        if(mediaPlayer==null){
-                mediaPlayer=MediaPlayer.create(context, R.raw.beep);
-            }
+        if (mediaPlayer == null) {
+            mediaPlayer = MediaPlayer.create(context, R.raw.beep);
+        }
 
         if (isOpen) {
             canvas.drawCircle(eyePosition.x, eyePosition.y, eyeRadius, mEyeWhitesPaint);
             canvas.drawCircle(irisPosition.x, irisPosition.y, irisRadius, mEyeIrisPaint);
-            Log.i("MEDIA","INOpen Method but not in stop");
-            if(mediaPlayer.isPlaying()){
-                Log.i("MEDIA","Stop");
+            Log.i("MEDIA", "INOpen Method but not in stop");
+            if (mediaPlayer.isPlaying()) {
+                Log.i("MEDIA", "Stop");
                 mediaPlayer.stop();
                 mediaPlayer.release();
                 mediaPlayer = null;
@@ -125,7 +125,7 @@ public class EyesGraphics extends GraphicOverlay.Graphic {
             float start = eyePosition.x - eyeRadius;
             float end = eyePosition.x + eyeRadius;
             canvas.drawLine(start, y, end, y, mEyeOutlinePaint);
-            Log.i("MEDIA","Start");
+            Log.i("MEDIA", "Start");
             mediaPlayer.start();
         }
         canvas.drawCircle(eyePosition.x, eyePosition.y, eyeRadius, mEyeOutlinePaint);
