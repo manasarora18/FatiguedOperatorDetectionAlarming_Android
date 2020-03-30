@@ -5,25 +5,20 @@ import android.os.SystemClock;
 
 public class EyeTracker {
     private final long TIME_MS = 1000;
-
     private final float FRICTION_COEFF = 2.2f;
     private final float GRAVITY_COEFF = 0.5f;
-
     private final float BOUNCE_MUL = 0.8f;
-
     private final float ZERO_TOLERANCE = 0.001f; //converge to zero more quickly
 
     private long mLastUpdateTimeMs = SystemClock.elapsedRealtime();
 
     private PointF mEyePosition;
     private float mEyeRadius;
-
     private PointF mIrisPosition;
     private float mIrisRadius;
 
     private float vx = 0.0f;  //Scaling based on eye size
     private float vy = 0.0f;
-
     private int mConsecutiveBounces = 0; //keeping track, iris movement when too fast
 
     PointF nextIrisPosition(PointF eyePosition, float eyeRadius, float irisRadius) {
@@ -50,7 +45,6 @@ public class EyeTracker {
         float x = mIrisPosition.x + (vx * mIrisRadius * simulationRate);
         float y = mIrisPosition.y + (vy * mIrisRadius * simulationRate);
         mIrisPosition = new PointF(x, y);
-
         makeIrisInBounds(simulationRate);
         return mIrisPosition;
     }
@@ -81,31 +75,23 @@ public class EyeTracker {
 
        //dampen the momentum of fast movement
         mConsecutiveBounces++;
-
-
         float ratio = maxDistance / distance;
         float x = mEyePosition.x + (ratio * irisOffsetX);
         float y = mEyePosition.y + (ratio * irisOffsetY);
 
-
         float dx = x - mIrisPosition.x;
         vx = applyBounce(vx, dx, simulationRate) / mConsecutiveBounces;
-
         float dy = y - mIrisPosition.y;
         vy = applyBounce(vy, dy, simulationRate) / mConsecutiveBounces;
-
         mIrisPosition = new PointF(x, y);
     }
 
-
     private float applyBounce(float velocity, float distOutOfBounds, float simulationRate) {
         if (isZero(distOutOfBounds)) {
-
             return velocity;
         }
 
         velocity *= -1;
-
         float bounce = BOUNCE_MUL * Math.abs(distOutOfBounds / mIrisRadius);
         if (velocity > 0) {
             velocity += bounce * simulationRate;

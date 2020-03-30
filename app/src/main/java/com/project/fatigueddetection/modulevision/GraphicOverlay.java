@@ -127,7 +127,6 @@ public class GraphicOverlay extends View {
                 mWidthScaleFactor = (float) canvas.getWidth() / (float) mPreviewWidth;
                 mHeightScaleFactor = (float) canvas.getHeight() / (float) mPreviewHeight;
             }
-
             for (Graphic graphic : mGraphics) {
                 graphic.draw(canvas);
             }

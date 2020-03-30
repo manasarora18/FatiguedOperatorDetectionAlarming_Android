@@ -9,12 +9,9 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.ViewGroup;
-
 import androidx.core.app.ActivityCompat;
-
 import com.google.android.gms.common.images.Size;
 import com.google.android.gms.vision.CameraSource;
-
 import java.io.IOException;
 
 public class CameraPreview extends ViewGroup {
@@ -32,7 +29,6 @@ public class CameraPreview extends ViewGroup {
         mContext = context;
         mStartRequested = false;
         mSurfaceAvailable = false;
-
         mSurfaceView = new SurfaceView(context);
         mSurfaceView.getHolder().addCallback(new SurfaceCallback());
         addView(mSurfaceView);
@@ -44,7 +40,6 @@ public class CameraPreview extends ViewGroup {
         }
 
         mCameraSource = cameraSource;
-
         if (mCameraSource != null) {
             mStartRequested = true;
             startIfReady();
@@ -72,8 +67,6 @@ public class CameraPreview extends ViewGroup {
     private void startIfReady() throws IOException {
         if (mStartRequested && mSurfaceAvailable) {
             if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                // Dexter will perform here (prapon)
-                // do not touch here
                 return;
             }
             mCameraSource.start(mSurfaceView.getHolder());
@@ -134,7 +127,6 @@ public class CameraPreview extends ViewGroup {
 
         final int viewWidth = right - left;
         final int viewHeight = bottom - top;
-
         int childWidth;
         int childHeight;
         int childXOffset = 0;
@@ -177,4 +169,3 @@ public class CameraPreview extends ViewGroup {
         return false;
     }
 }
-

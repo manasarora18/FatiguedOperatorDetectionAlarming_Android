@@ -13,18 +13,15 @@ import com.project.fatigueddetection.R;
 public class EyesGraphics extends GraphicOverlay.Graphic {
     private static final float EYE_RADIUS_PROPORTION = 0.45f;
     private static final float IRIS_RADIUS_PROPORTION = EYE_RADIUS_PROPORTION / 2.0f;
-
     private Paint mEyeWhitesPaint;
     private Paint mEyeIrisPaint;
     private Paint mEyeOutlinePaint;
     private Paint mEyeLidPaint;
-
     private EyeTracker mLeftPhysics = new EyeTracker();
     private EyeTracker mRightPhysics = new EyeTracker();
 
     private volatile PointF mLeftPosition;
     private volatile boolean mLeftOpen;
-
     private volatile PointF mRightPosition;
     private volatile boolean mRightOpen;
     private Context context;
@@ -120,7 +117,6 @@ public class EyesGraphics extends GraphicOverlay.Graphic {
                 mediaPlayer.stop();
                 mediaPlayer.release();
                 mediaPlayer = null;
-
             }
 
         } else {

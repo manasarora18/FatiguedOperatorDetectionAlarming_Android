@@ -3,7 +3,6 @@ package com.project.fatigueddetection;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,7 +16,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.vision.CameraSource;
@@ -31,7 +29,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.project.fatigueddetection.modulevision.CameraPreview;
 import com.project.fatigueddetection.modulevision.FaceTracker;
 import com.project.fatigueddetection.modulevision.GraphicOverlay;
-
 import java.io.IOException;
 
 public class DetectActivity extends AppCompatActivity {
@@ -41,7 +38,6 @@ public class DetectActivity extends AppCompatActivity {
     private CameraSource mCameraSource = null;
     private CameraPreview mPreview;
     private GraphicOverlay mGraphicOverlay;
-
     private boolean mIsFrontFacing = true;
 
     @Override
@@ -69,7 +65,6 @@ public class DetectActivity extends AppCompatActivity {
     //RequestingCameraPositions
     private void requestCameraPermission() {
         Log.w(TAG, "Camera permission is not granted. Requesting permission");
-
         final String[] permissions = new String[]{Manifest.permission.CAMERA};
 
         if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
@@ -108,7 +103,6 @@ public class DetectActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-
     }
 
     //ReleaseCameraResource on ActivityDestroy
@@ -144,7 +138,6 @@ public class DetectActivity extends AppCompatActivity {
                 finish();
             }
         };
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Face Tracker sample")
                 .setMessage(R.string.no_camera_permission)
@@ -204,7 +197,6 @@ public class DetectActivity extends AppCompatActivity {
 
         if (!detector.isOperational()) {
             Log.w(TAG, "Face detector dependencies are not yet available.");
-
             IntentFilter lowStorageFilter = new IntentFilter(Intent.ACTION_DEVICE_STORAGE_LOW);
             boolean hasLowStorage = registerReceiver(null, lowStorageFilter) != null;
 
